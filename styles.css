@@ -1,0 +1,160 @@
+
+body {
+    background-color: #252A34;
+    color: #E9E9EA;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav.top-nav{
+    background-color: #252A34;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    box-shadow: 1px 1px 1px #889ABF;
+    text-align: center;
+
+}
+
+
+nav.top-nav ul{
+    float: right;
+    margin: 30px;
+}
+
+nav.top-nav a{    
+    text-decoration: none;
+    color: #E9E9EA;
+}
+
+[aria-current=page]{
+    /* background-color: white; */
+    color: #5B6780;
+    border-bottom: 2px solid #5B6780;
+}
+
+.name{
+    float: left;
+    font-size: 24px;
+    margin: 30px;
+    text-align: center;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+nav.top-nav li{
+    display:inline-block;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-weight: bold;
+    margin:5px;
+    user-select:none;
+
+}
+
+nav.top-nav li:hover{
+    text-decoration: underline; 
+
+}
+
+main{
+    margin-top: 120px;
+}
+
+.main-content{
+    width: 600px;
+    margin: 0 auto;
+}
+
+/* .intro-body{
+    margin-bottom: 10px;
+} */
+
+.internal-link{        
+    text-decoration: none;
+    color: #E9E9EA;
+    font-weight: bolder;
+}
+
+.major-header{
+    margin-bottom: 0px;
+    margin-top: 70px;
+    /* padding-bottom: 5px; */
+    font-size: 40px;
+
+    /* border-bottom: 1px solid #5B6780; */
+
+}
+
+.project-container{
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+}
+
+img {
+    max-width: 100%;
+    border-radius: 25px;
+    align-items: center;
+}
+
+.square-pic{
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+
+.project-img{
+    flex-basis: 70%;
+    order: 2;
+    margin-top: 50px;
+}
+
+.project-description{
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.content-header{
+    /* margin-bottom: 5px; */
+    margin-top: 40px;
+    padding: 5px;
+    font-size: 30px;
+    border-bottom: 1px solid #5B6780;
+}
+
+.read-more{
+    color: #889ABF;
+    float: right;
+    padding: 10px
+}
+
+
+/* BIO PAGE */
+
+
+
+.contact-list li{
+    margin-bottom: 10px;
+}
+
+.external-link{    
+    text-decoration: none;
+    color: #E9E9EA;
+    font-weight: bolder;
+}
+
+/* Project Page */
+
+.step-explanation{
+    margin-top: 100px;
+}
+
+.step-description{
+    font-size: 20px;
+    margin-top: 20px;
+}
