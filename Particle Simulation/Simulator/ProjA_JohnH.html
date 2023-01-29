@@ -7,43 +7,54 @@
   </head>
 
   <body onload="main()">
+    <nav role="navigation" class="top-nav">            
+        <a class="name" href="../../index.html">John Holtgreive</a>
+        <ul>
+            <li tabindex="0"><a href="../../index.html">Home</a></li>
+            <li tabindex="1"><a class="navbar-link" href="../../bio.html">About Me</a> </li>
+            <li tabindex="2"><a class="navbar-link" href="https://drive.google.com/file/d/1fpaCZu5zYXdUIYIatOuBQqdxHZNsPrB8/view?usp=sharing">
+                Resume</a></li>
+        </ul>
+    </nav>
     <main>
+      <div class="interactive-content">
+          
+        <canvas id="webgl" width="600" height="400">
+        Please use a browser that supports "canvas"
+        </canvas>
         
-      <canvas id="webgl" width="600" height="400">
-      Please use a browser that supports "canvas"
-      </canvas>
-      
-    <!-- Make 'div' elements to hold changeable HTML made in our JavaScript file;
-      (where? look at the end of 'BouncyBall03.js' at 
-        myKeyPress(), myKeyDown() and myKeyUp() fcns)
-    -->
-    <p>
-      <div id='KeyControls'> KeyControls... </div>
-      <div id='KeyDown'> KeyDown...</div>
-      <div id='KeyMod'> KeyMod...  </div>
-      <div id='MouseResult0'> MouseResult0... </div> 
-      <div id='MouseResult1'> MouseResult1... </div>
-    </p>
+      <!-- Make 'div' elements to hold changeable HTML made in our JavaScript file;
+        (where? look at the end of 'BouncyBall03.js' at 
+          myKeyPress(), myKeyDown() and myKeyUp() fcns)
+      -->
       <p>
-        <button type="button" onclick="VBO0toggle()">VBO-0 hide/show</button>
-        <button type="button" onclick="VBO1toggle()">VBO-1 hide/show</button>
-        <button type="button" onclick="VBO2toggle()">VBO-2 hide/show</button>
+        <div id='KeyControls'> KeyControls... </div>
+        <div id='KeyDown'> KeyDown...</div>
+        <div id='KeyMod'> KeyMod...  </div>
+        <div id='MouseResult0'> MouseResult0... </div> 
+        <div id='MouseResult1'> MouseResult1... </div>
       </p>
-      <script src="../lib/webgl-utils.js"></script>
-      <script src="../lib/webgl-debug.js"></script>
-      <script src="../lib/cuon-utils.js"></script>
-      <script src="../lib/cuon-matrix-quat03.js"></script>
-  <!-- YOU SHOULD UPGRADE to Brandon Jones' far-faster, 
-        far more complete vector/matrix/quaternion library: (Google it!)
-      <script src="../lib/glmatrix.js"></script>
-  --> 
-      <script src="CForcer02.js"></script>
-      <script src="CLimit02.js"></script>
-      <!-- <script src="PartSys06.js"></script> -->
-      <script src="JH_VBObox-Lib.js"></script>
-      <script src="PartSysVBO.js"></script>
-      <script src="ProjA_JohnH.js"></script>
-      
+        <p>
+          <button type="button" onclick="VBO0toggle()">VBO-0 hide/show</button>
+          <button type="button" onclick="VBO1toggle()">VBO-1 hide/show</button>
+          <button type="button" onclick="VBO2toggle()">VBO-2 hide/show</button>
+        </p>
+        <script src="../lib/webgl-utils.js"></script>
+        <script src="../lib/webgl-debug.js"></script>
+        <script src="../lib/cuon-utils.js"></script>
+        <script src="../lib/cuon-matrix-quat03.js"></script>
+    <!-- YOU SHOULD UPGRADE to Brandon Jones' far-faster, 
+          far more complete vector/matrix/quaternion library: (Google it!)
+        <script src="../lib/glmatrix.js"></script>
+    --> 
+        <script src="CForcer02.js"></script>
+        <script src="CLimit02.js"></script>
+        <!-- <script src="PartSys06.js"></script> -->
+        <script src="JH_VBObox-Lib.js"></script>
+        <script src="PartSysVBO.js"></script>
+        <script src="ProjA_JohnH.js"></script>
+        
+      </div>
     </main>
   </body>
 </html>
