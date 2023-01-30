@@ -1618,6 +1618,8 @@ PartSysVBO.prototype.initOrbits = function() {
   console.log('PartSysVBO.initOrbits() stub not finished!');
 }
 
+// Particle System specific functions
+
 PartSysVBO.prototype.applyForces = function(s, fList) { 
 //==============================================================================
 // Clear the force-accumulator vector for each particle in state-vector 's', 
@@ -1946,6 +1948,7 @@ PartSysVBO.prototype.applyForces = function(s, fList) {
   } // for(k=0...)
   
 }
+
 PartSysVBO.prototype.dotFinder = function(dest, src) {
 //==============================================================================
 // fill the already-existing 'dest' variable (a float32array) with the 
@@ -1976,42 +1979,6 @@ PartSysVBO.prototype.dotFinder = function(dest, src) {
     dest[j + PART_RENDMODE] = 0.0;
     dest[j + PART_AGE] = 0.0;
     }
-}
-
-PartSysVBO.prototype.render = function(s) {
-  
-  // this.reload();
-  
-  gl.bufferSubData(gl.ARRAY_BUFFER, 	// GLenum target(same as 'bindBuffer()')
-  0,                  // byte offset to where data replacement
-                      // begins in the VBO.
-    this.s1);   // the JS source-data array used to fill VBO
-  
-  // check: was WebGL context set to use our VBO & shader program?
-  if(this.isReady()==false) {
-    console.log('ERROR! before' + this.constructor.name + 
-          '.draw() call you needed to call this.switchToMe()!!');
-  }
-
-	gl.uniform1i(this.u_runModeID, this.runMode);	// run/step/pause the particle system 
-	// gl.uniform1i(this.u_ageID, this.runMode);	// run/step/pause the particle system 
-
-  // Draw our VBO's new contents:
-  gl.drawArrays(gl.POINTS,          // mode: WebGL drawing primitive to use 
-                0,                  // index: start at this vertex in the VBO;
-                this.partCount);    // draw this many vertices.
-
-  if (this.drawLines){
-    // Draw our VBO's new contents:
-    gl.drawArrays(gl.LINES,          // mode: WebGL drawing primitive to use 
-      0,                  // index: start at this vertex in the VBO;
-      this.partCount);    // draw this many vertices.
-
-      // Draw our VBO's new contents:
-      gl.drawArrays(gl.LINES,          // mode: WebGL drawing primitive to use 
-        1,                  // index: start at this vertex in the VBO;
-        this.partCount - 1);    // draw this many vertices.
-  }
 }
 
  PartSysVBO.prototype.solver = function() {
@@ -2941,6 +2908,42 @@ PartSysVBO.prototype.doConstraints = function(sNow, sNext, cList, fountainTest) 
 
 */
 
+}
+
+PartSysVBO.prototype.render = function(s) {
+  
+  // this.reload();
+  
+  gl.bufferSubData(gl.ARRAY_BUFFER, 	// GLenum target(same as 'bindBuffer()')
+  0,                  // byte offset to where data replacement
+                      // begins in the VBO.
+    this.s1);   // the JS source-data array used to fill VBO
+  
+  // check: was WebGL context set to use our VBO & shader program?
+  if(this.isReady()==false) {
+    console.log('ERROR! before' + this.constructor.name + 
+          '.draw() call you needed to call this.switchToMe()!!');
+  }
+
+	gl.uniform1i(this.u_runModeID, this.runMode);	// run/step/pause the particle system 
+	// gl.uniform1i(this.u_ageID, this.runMode);	// run/step/pause the particle system 
+
+  // Draw our VBO's new contents:
+  gl.drawArrays(gl.POINTS,          // mode: WebGL drawing primitive to use 
+                0,                  // index: start at this vertex in the VBO;
+                this.partCount);    // draw this many vertices.
+
+  if (this.drawLines){
+    // Draw our VBO's new contents:
+    gl.drawArrays(gl.LINES,          // mode: WebGL drawing primitive to use 
+      0,                  // index: start at this vertex in the VBO;
+      this.partCount);    // draw this many vertices.
+
+      // Draw our VBO's new contents:
+      gl.drawArrays(gl.LINES,          // mode: WebGL drawing primitive to use 
+        1,                  // index: start at this vertex in the VBO;
+        this.partCount - 1);    // draw this many vertices.
+  }
 }
 
 PartSysVBO.prototype.swap = function() {

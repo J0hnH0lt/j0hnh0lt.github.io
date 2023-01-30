@@ -1096,7 +1096,7 @@ function VBObox1() {
   '}\n';
   */
 
-  this.g_partA = new PartSys();
+  // this.g_partA = new PartSys();
 
 	// this.vboContents = //---------------------------------------------------------
 	// 	new Float32Array ([					// Array of vertex attribute values we will

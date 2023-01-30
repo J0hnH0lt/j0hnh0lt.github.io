@@ -222,6 +222,7 @@ function animate() {
 
   return elapsed;
 }
+
 function timerAll() {
 //=============================================================================
   var nowMS = Date.now();             
