@@ -567,7 +567,7 @@ PartSysVBO.prototype.initFireReeves = function(count) {
   // fTmp.Kdrag = 0.15;              
   fTmp.targFirst = 0;             
   fTmp.partCount = -1;   
-  fTmp.windDir = [0, 0 , 1]; // Blow to the left
+  fTmp.windDir = new Vector3([0, 0 , 1]); // Blow to the up
   fTmp.windStr = 7 ; // Strength of wind  
 
   this.forceList.push(fTmp);      // append this 'gravity' force object to 
@@ -862,7 +862,7 @@ PartSysVBO.prototype.initTornado = function(count) {
   // fTmp.Kdrag = 0.15;              
   fTmp.targFirst = 0;             
   fTmp.partCount = -1;   
-  fTmp.windDir = [0, 0, 1]; // Blow to the left
+  fTmp.windDir = new Vector3([0, 0, 1]); // Blow to the left
   fTmp.windStr = 9.8 ; // Strength of wind  
                                   
   this.forceList.push(fTmp);  
@@ -1209,7 +1209,7 @@ PartSysVBO.prototype.initSpringPair = function() {
   fTmp.e2 = 1;
   fTmp.K_spring = 1;
   fTmp.K_springDamp = 0.9;
-  fTmp.K_restLength = 0.1;
+  fTmp.K_restLength = 0.2;
 
   this.forceList.push(fTmp);  
    
@@ -1260,7 +1260,7 @@ PartSysVBO.prototype.initSpringPair = function() {
 										
   //--------------------------init Particle System Controls:
   this.runMode =  3;// Master Control: 0=reset; 1= pause; 2=step; 3=run
-  this.solvType = SOLV_MIDPOINT;// adjust by s/S keys.
+  this.solvType = SOLV_BACK_EULER;// adjust by s/S keys.
                     // SOLV_EULER (explicit, forward-time, as 
 										// found in BouncyBall03.01BAD and BouncyBall04.01badMKS)
 										// SOLV_OLDGOOD for special-case implicit solver, reverse-time, 
@@ -1280,21 +1280,21 @@ PartSysVBO.prototype.initSpringPair = function() {
   for(var i = 0; i < this.partCount; i += 1, j+= PART_MAXVAR) {
     this.roundRand();       // set this.randX,randY,randZ to random location in 
                             // a 3D unit sphere centered at the origin.
-//all our bouncy-balls stay within a +/- 0.9 cube centered at origin; 
-// set random positions in a 0.1-radius ball centered at (-0.8,-0.8,-0.8) //! Spawn location
-this.s1[j + PART_XPOS] = 0.7 * i; 
-this.s1[j + PART_YPOS] = 0;  
-this.s1[j + PART_ZPOS] = 0.5;
-this.s1[j + PART_WPOS] =  1.0;      // position 'w' coordinate;
-this.roundRand(); // Now choose random initial velocities too:
-this.s1[j + PART_XVEL] =  0;
-this.s1[j + PART_YVEL] =  0;
-this.s1[j + PART_ZVEL] =  0;
-this.s1[j + PART_MASS] =  1.0;      // mass, in kg.
-this.s1[j + PART_DIAM] =  2.0 + 10*Math.random(); // on-screen diameter, in pixels
-this.s1[j + PART_LIFELEFT] = 10 + 10*Math.random();// 10 to 20
-this.s1[j + PART_RENDMODE] = 0.0;
-this.s1[j + PART_AGE] = 30 + 100*Math.random();
+    //all our bouncy-balls stay within a +/- 0.9 cube centered at origin; 
+    // set random positions in a 0.1-radius ball centered at (-0.8,-0.8,-0.8) //! Spawn location
+    this.s1[j + PART_XPOS] = 0.7 * i; 
+    this.s1[j + PART_YPOS] = 0;  
+    this.s1[j + PART_ZPOS] = 0.5;
+    this.s1[j + PART_WPOS] =  1.0;      // position 'w' coordinate;
+    this.roundRand(); // Now choose random initial velocities too:
+    this.s1[j + PART_XVEL] =  0;
+    this.s1[j + PART_YVEL] =  0;
+    this.s1[j + PART_ZVEL] =  0;
+    this.s1[j + PART_MASS] =  1.0;      // mass, in kg.
+    this.s1[j + PART_DIAM] =  2.0 + 10*Math.random(); // on-screen diameter, in pixels
+    this.s1[j + PART_LIFELEFT] = 10 + 10*Math.random();// 10 to 20
+    this.s1[j + PART_RENDMODE] = 0.0;
+    this.s1[j + PART_AGE] = 30 + 100*Math.random();
     // this.s1[j + PART_AGE] = 1000000;
 
     this.s2.set(this.s1);   // COPY contents of state-vector s1 to s2.
@@ -1321,7 +1321,7 @@ PartSysVBO.prototype.initSpringRope = function() {
 
   var my_spring =2;
   var my_springDamp = 0.9;
-  var my_restLength = 0.1;
+  var my_restLength = 0.01;
   this.drawLines = true; //! Need to adjust
   // Create & init all force-causing objects------------------------------------
   // -------------- GRAVITY  for all particles:
@@ -1340,7 +1340,7 @@ PartSysVBO.prototype.initSpringRope = function() {
   // fTmp.Kdrag = 0.15;              
   fTmp.targFirst = 0;             
   fTmp.partCount = -1;   
-  fTmp.windDir = [0, 0, -1]; // Blow to the left
+  fTmp.windDir = new Vector3([0, 0, -1]); // Blow to the left
   fTmp.windStr = 0.2 ; // Strength of wind  
                                   
   this.forceList.push(fTmp);  
@@ -1562,7 +1562,7 @@ PartSysVBO.prototype.initSpringRope = function() {
 										
   //--------------------------init Particle System Controls:
   this.runMode =  3;// Master Control: 0=reset; 1= pause; 2=step; 3=run
-  this.solvType = SOLV_MIDPOINT;// adjust by s/S keys.
+  this.solvType = SOLV_BACK_EULER;// adjust by s/S keys.
                     // SOLV_EULER (explicit, forward-time, as 
 										// found in BouncyBall03.01BAD and BouncyBall04.01badMKS)
 										// SOLV_OLDGOOD for special-case implicit solver, reverse-time, 
@@ -1704,9 +1704,9 @@ PartSysVBO.prototype.applyForces = function(s, fList) {
 
         for(; m<mmax; m++, j+=PART_MAXVAR) { // for every particle# from m to mmax-1,
                       // force from gravity == mass * gravConst * downDirection
-          s[j + PART_X_FTOT] += fList[k].windStr * fList[k].windDir[0]; 
-          s[j + PART_Y_FTOT] += fList[k].windStr * fList[k].windDir[1]; 
-          s[j + PART_Z_FTOT] += fList[k].windStr * fList[k].windDir[2];
+          s[j + PART_X_FTOT] += fList[k].windStr * fList[k].windDir.elements[0]; 
+          s[j + PART_Y_FTOT] += fList[k].windStr * fList[k].windDir.elements[1]; 
+          s[j + PART_Z_FTOT] += fList[k].windStr * fList[k].windDir.elements[2];
           }
         // console.log("It ran")
         break;
@@ -2012,71 +2012,109 @@ PartSysVBO.prototype.dotFinder = function(dest, src) {
     	    }
 */
 		  break;
-		case SOLV_OLDGOOD://-------------------------------------------------------------------
-			// IMPLICIT or 'reverse time' solver, as found in bouncyBall04.goodMKS;
-			// This category of solver is often better, more stable, but lossy.
-			// -- apply acceleration due to gravity to current velocity:
-			//				  s2[PART_YVEL] -= (accel. due to gravity)*(g_timestep in seconds) 
-			//                  -= (9.832 meters/sec^2) * (g_timeStep/1000.0);
-      var j = 0;  // i==particle number; j==array index for i-th particle
-      for(var i = 0; i < this.partCount; i += 1, j+= PART_MAXVAR) {
-  			this.s2[j + PART_ZVEL] -= this.grav*(g_timeStep*0.001);
-  			// // -- apply drag: attenuate current velocity:
-  			// this.s2[j + PART_XVEL] *= this.drag;
-  			// this.s2[j + PART_YVEL] *= this.drag;
-  			// this.s2[j + PART_ZVEL] *= this.drag;
-  			// -- move our particle using current velocity:
-  			// CAREFUL! must convert g_timeStep from milliseconds to seconds!
-  			this.s2[j + PART_XPOS] += this.s2[j + PART_XVEL] * (g_timeStep * 0.001);
-  			this.s2[j + PART_YPOS] += this.s2[j + PART_YVEL] * (g_timeStep * 0.001); 
-  			this.s2[j + PART_ZPOS] += this.s2[j + PART_ZVEL] * (g_timeStep * 0.001); 
-  		}
-			// What's the result of this rearrangement?
-			//	IT WORKS BEAUTIFULLY! much more stable much more often...
-		  break;
-    case SOLV_MIDPOINT:         // Midpoint Method (see lecture notes)
-      //--------------------------------------------------------
-      // create sM
-      this.sM =    new Float32Array(this.partCount * PART_MAXVAR);
-
-			// Half step: sM = s1 + (h/2)*s1dot
-      for(var n = 0; n < this.s1.length; n++) { // for all elements in s1,s2,s1dot;
-        this.sM[n] = this.s1[n] + .5 * this.s1dot[n] * (g_timeStep * 0.001); 
+      case SOLV_OLDGOOD://-------------------------------------------------------------------
+        // IMPLICIT or 'reverse time' solver, as found in bouncyBall04.goodMKS;
+        // This category of solver is often better, more stable, but lossy.
+        // -- apply acceleration due to gravity to current velocity:
+        //				  s2[PART_YVEL] -= (accel. due to gravity)*(g_timestep in seconds) 
+        //                  -= (9.832 meters/sec^2) * (g_timeStep/1000.0);
+        var j = 0;  // i==particle number; j==array index for i-th particle
+        for(var i = 0; i < this.partCount; i += 1, j+= PART_MAXVAR) {
+          this.s2[j + PART_ZVEL] -= this.grav*(g_timeStep*0.001);
+          // // -- apply drag: attenuate current velocity:
+          // this.s2[j + PART_XVEL] *= this.drag;
+          // this.s2[j + PART_YVEL] *= this.drag;
+          // this.s2[j + PART_ZVEL] *= this.drag;
+          // -- move our particle using current velocity:
+          // CAREFUL! must convert g_timeStep from milliseconds to seconds!
+          this.s2[j + PART_XPOS] += this.s2[j + PART_XVEL] * (g_timeStep * 0.001);
+          this.s2[j + PART_YPOS] += this.s2[j + PART_YVEL] * (g_timeStep * 0.001); 
+          this.s2[j + PART_ZPOS] += this.s2[j + PART_ZVEL] * (g_timeStep * 0.001); 
         }
-      // turning s1dot into sMdot
-      this.dotFinder(this.s1dot, this.sM);
+        // What's the result of this rearrangement?
+        //	IT WORKS BEAUTIFULLY! much more stable much more often...
+        break;
+      case SOLV_MIDPOINT:         // Midpoint Method (see lecture notes)
+        //--------------------------------------------------------
+        // create sM
+        this.sM =    new Float32Array(this.partCount * PART_MAXVAR);
 
-      // Final update: s2 = s1 + h*sMdot
-      for(var n = 0; n < this.s1.length; n++) { // for all elements in s1,s2,s1dot;
-        this.s2[n] = this.s1[n] + this.s1dot[n] * (g_timeStep * 0.001); 
-        }
-      // console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
-      break;
-    case SOLV_ADAMS_BASH:       // Adams-Bashforth Explicit Integrator
-      console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
-      break;
-    case SOLV_RUNGEKUTTA:       // Arbitrary degree, set by 'solvDegree'
-      console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
-      break;
-    case SOLV_BACK_EULER:       // 'Backwind' or Implicit Euler
-      console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
-      break;
-    case  SOLV_BACK_MIDPT:      // 'Backwind' or Implicit Midpoint
-      console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
-      break;
-    case SOLV_BACK_ADBASH:      // 'Backwind' or Implicit Adams-Bashforth
-      console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
-      break;
-    case SOLV_VERLET:          // Verlet semi-implicit integrator;
-      console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
-      break;
-    case SOLV_VEL_VERLET:      // 'Velocity-Verlet'semi-implicit integrator
-      console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
-      break;
-    case SOLV_LEAPFROG:        // 'Leapfrog' integrator
-      console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
-      break;
-    default:
+        // Half step: sM = s1 + (h/2)*s1dot
+        for(var n = 0; n < this.s1.length; n++) { // for all elements in s1,s2,s1dot;
+          this.sM[n] = this.s1[n] + .5 * this.s1dot[n] * (g_timeStep * 0.001); 
+          }
+        // turning s1dot into sMdot
+        this.dotFinder(this.s1dot, this.sM);
+
+        // Final update: s2 = s1 + h*sMdot
+        for(var n = 0; n < this.s1.length; n++) { // for all elements in s1,s2,s1dot;
+          this.s2[n] = this.s1[n] + this.s1dot[n] * (g_timeStep * 0.001); 
+          }
+        // console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
+        break;
+      case SOLV_ADAMS_BASH:       // Adams-Bashforth Explicit Integrator
+        console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
+        break;
+      case SOLV_RUNGEKUTTA:       // Arbitrary degree, set by 'solvDegree'
+        console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
+        break;
+      case SOLV_BACK_EULER:       // 'Backwind' or Implicit Euler
+        console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
+                
+        // create s2_0 (first estimate)
+        this.s2_0 =    new Float32Array(this.partCount * PART_MAXVAR);
+
+        // create s3_0 (first estimate)
+        this.s3_0 =    new Float32Array(this.partCount * PART_MAXVAR);
+
+        // create sErr (residual difference)
+        this.sErr =    new Float32Array(this.partCount * PART_MAXVAR);
+
+        // s2_0 = s1 + h*s1dot
+        // s3_0 = s2_0 - h*s2_0dot
+        // sErr = s3 + h*(s2dot - s1dot)   =>   sErr = s1 - s3
+        // s21 = s2 - 0.5*sErr             =>   s2 = s2_0 - 0.5*sErr 
+        
+        // s2_0 = s1 + h*s1dot
+        for(var n = 0; n < this.s1.length; n++) { // for all elements in s1,s2,s1dot;
+          this.s2_0[n] = this.s1[n] + this.s1dot[n] * (g_timeStep * 0.001); 
+          }
+        
+        // turning s1dot into s2_0dot
+        this.dotFinder(this.s1dot, this.s2_0);
+
+        // s3_0 = s2_0 - h*s2_0dot
+        for(var n = 0; n < this.s1.length; n++) { // for all elements in s1,s2,s1dot;
+          this.s3_0[n] = this.s2_0[n] - this.s1dot[n] * (g_timeStep * 0.001); 
+          }
+        
+        // sErr = s1 - s3
+        for(var n = 0; n < this.s1.length; n++) { // for all elements in s1,s2,s1dot;
+          this.sErr[n] = this.s1[n] - this.s3_0[n]; 
+          }
+
+        // s2 = s2_0 - 0.5*sErr 
+        for(var n = 0; n < this.s1.length; n++) { // for all elements in s1,s2,s1dot;
+          this.s2[n] = this.s2_0[n] - 0.5 * this.sErr[n]; 
+          }
+
+        break;
+      case  SOLV_BACK_MIDPT:      // 'Backwind' or Implicit Midpoint
+        console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
+        break;
+      case SOLV_BACK_ADBASH:      // 'Backwind' or Implicit Adams-Bashforth
+        console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
+        break;
+      case SOLV_VERLET:          // Verlet semi-implicit integrator;
+        console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
+        break;
+      case SOLV_VEL_VERLET:      // 'Velocity-Verlet'semi-implicit integrator
+        console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
+        break;
+      case SOLV_LEAPFROG:        // 'Leapfrog' integrator
+        console.log('NOT YET IMPLEMENTED: this.solvType==' + this.solvType);
+        break;
+      default:
 			console.log('?!?! unknown solver: this.solvType==' + this.solvType);
 			break;
 		}

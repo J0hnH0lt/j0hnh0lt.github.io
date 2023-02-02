@@ -3,7 +3,7 @@ var gl;
 
 var g_canvasID = document.getElementById('webgl');	
 
-var eyeAt = [3, 6, 1, 1];
+var eyeAt = [-1, 6, 1, 1];
 
 var springPairLoc =   [3, 1, 1];
 var springRopeLoc =   [-1, 1, 1];

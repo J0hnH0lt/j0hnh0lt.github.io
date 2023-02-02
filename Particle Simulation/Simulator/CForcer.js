@@ -64,7 +64,7 @@ function CForcer() {
   // F_GRAV_E  Earth Gravity variables........................................
   this.gravConst = 9.832; // gravity's acceleration(meter/sec^2);
   // on Earth surface, value is 9.832 meters/sec^2.
-  this.downDir = new Vector4([0, 0, -1, 1]); // 'down' direction vector for gravity.
+  this.downDir = new Vector4([0, 0, -1, 0]); // 'down' direction vector for gravity.
 
   // F_GRAV_P  Planetary Gravity variables....................................
   // Attractive force on a pair of particles (e1,e2) with strength of
@@ -75,7 +75,7 @@ function CForcer() {
 
   // F_WIND  Planetary Gravity variables....................................
   this.windStr = 5;
-  this.windDir = [1, 0, 0]; 
+  this.windDir = new Vector3([1, 0, 0]); 
 
   // F_DRAG Viscous Drag Variables............................................
   this.K_drag = 0.15; // force = -velocity*K_drag.
