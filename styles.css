@@ -170,3 +170,40 @@ img {
     width: 100%;
     height: 100%;
 }
+
+
+/* Sarah-ADHD-Facts Page */
+
+.adhd-fact{
+    margin-top: 100px;
+}
+
+.fact-content{
+    font-size: 20px;
+    margin-top: 20px;
+}
+.fact-description{
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.fact-details{
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+/* Sarah Page */
+
+.my-experience-example{
+    margin-top: 100px;
+}
+
+.example-description{
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.example-details{
+    font-size: 20px;
+    margin-top: 20px;
+}
